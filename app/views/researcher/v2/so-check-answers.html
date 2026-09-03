@@ -564,32 +564,6 @@
       }
     }]) %}
 
-    {% if not data['soCPMSID'] %}
-
-      {% set rows3 = rows3.concat([{
-        key: { text: "Study location" },
-        value: { text: data['soStudyLocation'] or "" },
-        actions: {
-          items: [{
-            href: "/researcher/v2/so-study-location#soStudyLocation",
-            text: "Change",
-            visuallyHiddenText: "study location"
-          }]
-        }
-      }]) %}
-
-    {% else %}
-
-      {% set rows3 = rows3.concat([{
-        key: { text: "Study location" },
-        value: {
-          text: data['soStudyLocation']
-            or "Online (from your own home, or anywhere with internet access)"
-        }
-      }]) %}
-
-    {% endif %}
-
     {% if not data['soCPMSID'] and data['soRecruitmentEndDate'] %}
 
       {% set months = [

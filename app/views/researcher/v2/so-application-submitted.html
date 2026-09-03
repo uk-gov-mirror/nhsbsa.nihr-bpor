@@ -45,31 +45,64 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
+    {% if data['brand'] == "BPOR" %}
+
     {{ panel({
-      titleText: "Request submitted"
+      heading: {
+        text: "Request submitted"
+      },
+      html: "Your reference number <strong>BPOR00123</strong>"
     }) }}
+
+    {% endif %}
+
+    {% if data['brand'] == "JDR" %}
+
+    {{ panel({
+      heading: {
+        text: "Request submitted"
+      },
+      html: "Your reference number <strong>JDR00123</strong>"
+    }) }}
+
+    {% endif %}
+
+    {% if data['brand'] != "BPOR" and data['brand'] != "JDR" %}
+
+    {{ panel({
+      heading: {
+        text: "Request submitted"
+      },
+      html: "Your reference number <strong>NIHR00123</strong>"
+    }) }}
+
+    {% endif %}
 
     {% if data['brand'] == "BPOR" or data['brand'] == "JDR" %}
 
+    <p>Keep a record of your reference number. You'll need it if you contact us.</p>
+
     <h2 class="nhsuk-heading-m">What happens next?</h2>
 
-    <p>We will review your study to check if it meets our requirements.</p>
+    <p>We’ll review your study to check that it meets our requirements. This can take up to 3 working days.</p>
 
-    <p>If we approve your study, we will create an account for <strong>{% if soPrimaryContactFirstName and soPrimaryContactLastName %}{{ data['soPrimaryContactFirstName'] }} {{ data['soPrimaryContactLastName'] }}{% else %}Jane Doe{% endif %}</strong>.</p>
+    <p>We’ll email <strong>{% if soPrimaryContactFirstName and soPrimaryContactLastName %}{{ data['soPrimaryContactFirstName'] }} {{ data['soPrimaryContactLastName'] }}{% else %}Jane Doe{% endif %}</strong> if we need any more information.</p>
 
-    <p>We will contact <strong>{% if soPrimaryContactFirstName and soPrimaryContactLastName %}{{ data['soPrimaryContactFirstName'] }} {{ data['soPrimaryContactLastName'] }}{% else %}Jane Doe{% endif %}</strong> if we need more information.</p>
+    <p>If you would like to view the details submitted for this study, you'll need to <a href="#">create a Recruit Registry Volunteers account</a>.</p>
 
-    <p>This can take up to 3 working days.</p>
+    <p>If you need more support or have any questions, you can email us at <a href="mailto:bepartofresearch-volunteerservice@nihr.ac.uk">bepartofresearch-volunteerservice@nihr.ac.uk</a></p>
 
     {% else %}
 
+    <p>Keep a record of your reference number. You'll need it if you contact us.</p>
+
     <h2 class="nhsuk-heading-m">What happens next?</h2>
 
-    <p>We will review your study to check if it meets our requirements.</p>
+    <p>We’ll review your study to check if it meets our requirements. This can take up to 3 working days.</p>
 
-    <p>We’ll contact <strong>{% if data['primaryContactConfirm'] == "Yes" %}{{ data['researcherFirstName'] }} {{ data['researcherLastName'] }}{% elif data['primaryContactConfirm'] == "No" %}{{ data['soPrimaryContactFirstName'] }} {{ data['soPrimaryContactLastName'] }}{% else %}Jane Doe{% endif %}</strong> if we need any more information.</p>
+    <p>We’ll email <strong>{% if data['primaryContactConfirm'] == "Yes" %}{% if data['researcherFirstName'] %}{{ data['researcherFirstName'] }}{% else %}Jane{% endif %} {% if data['researcherLastName'] %}{{ data['researcherLastName'] }}{% else %}Doe{% endif %}{% elif data['primaryContactConfirm'] == "No" %}{{ data['soPrimaryContactFirstName'] }} {{ data['soPrimaryContactLastName'] }}{% else %}Jane Doe{% endif %}</strong> if we need any more information.</p>
 
-    <p>This can take up to 3 working days.</p>
+    <p>If you need more support or have any questions, you can email us at <a href="mailto:bepartofresearch-volunteerservice@nihr.ac.uk">bepartofresearch-volunteerservice@nihr.ac.uk</a></p>
 
     {{ button({
       text: "Return to Recruit registry volunteers service",

@@ -986,11 +986,11 @@ router.post('/so-add-a-study-before', function (req, res) {
 
     if (brand == "JDR") {
 
-        res.redirect('so-task-list');
+        res.redirect('so-18s-outside-uk');
 
     } else if (brand == "BPOR") {
 
-        res.redirect('so-task-list');
+        res.redirect('so-18s-outside-uk');
 
     } else {
 
@@ -1006,7 +1006,7 @@ router.post('/so-add-a-study-type', function (req, res) {
 
     if (studyType) {
 
-        res.redirect('so-task-list');
+        res.redirect('so-18s-outside-uk');
 
     } else {
 
@@ -1015,6 +1015,28 @@ router.post('/so-add-a-study-type', function (req, res) {
     }
 
 });
+
+router.post('/so-18s-outside-uk', function (req, res) {
+
+    var u18sOutsideUk = req.session.data['18sOutsideUk'];
+
+    if (u18sOutsideUk.includes("Participants under 18 years of age") ||
+        u18sOutsideUk.includes("Participants who live outside of the UK")) {
+
+        res.redirect('so-18s-outside-uk-kickout');
+
+    } else if (u18sOutsideUk.includes("None of the above")) {
+
+        res.redirect('so-task-list');
+
+    } else {
+
+        res.redirect('so-18s-outside-uk');
+
+    }
+
+});
+
 
 router.post('/so-primary-contact-confirm', function (req, res) {
 
@@ -1305,25 +1327,9 @@ router.post('/so-health-conditions', function (req, res) {
         return res.redirect('so-task-list');
 
     }
-
-    return res.redirect('so-study-location');
     
-});
-
-router.post('/so-study-location', function (req, res) {
-
-    var soStudyLocation = req.session.data['soStudyLocation'];
-
-    if (soStudyLocation) {
-
-        res.redirect('so-recruitment-end-date');
-
-    } else {
-
-        res.redirect('so-study-location');
-
-    }
-
+    return res.redirect('so-recruitment-end-date');
+    
 });
 
 router.post('/so-study-location', function (req, res) {

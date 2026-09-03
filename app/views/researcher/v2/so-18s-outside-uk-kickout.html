@@ -36,11 +36,6 @@
   html: 'This is a new service - your <a target="_blank" href="https://bepartofresearch.nihr.ac.uk/get-in-touch/">feedback<span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span></a> will help us to improve it'
 }) }}
 
-{{ backLink({
-    "href": "javascript:history.go(-1)",
-    "text": "Back"
-}) }}
-
 {% endblock %}
 
 <!-- For adding page content -->
@@ -50,32 +45,18 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-<form action="/{{folder}}/{{subfolder}}/so-study-description" method="post" novalidate>
 
-{{ characterCount({
-  name: "studyDescription",
-  id: "studyDescription",
-  label: {
-    text: "Describe your study",
-    size: "l",
-    isPageHeading: true
-  },
-  hint: {
-    html: '<p>Give a short, clear overview of the research. Avoid jargon and explain any technical terms.</p><p>We’ll use this information for our records. It’ll not be published.</p>'
-  },
-  maxlength: 60,
-  countType: "words"
-}) }}
+<h1 class="nhsuk-u-margin-bottom-4">You cannot recruit participants through this service</h1>
 
-<div class="nhsuk-button-group">
-  
-  {{ button({
-    text: "Continue"
-  }) }}
+<p>We cannot help you recruit participants who:</p>
 
-</div>
+<ul>
+  <li>are aged 18 years old or under</li>
+  <li>live outside of the UK</li>
+</ul>
 
-</form>
+<p>If you need more support or have any questions, you can email us at <a href="mailto:bepartofresearch-volunteerservice@nihr.ac.uk">bepartofresearch-volunteerservice@nihr.ac.uk</a></p>
+      
 
 
     </div>

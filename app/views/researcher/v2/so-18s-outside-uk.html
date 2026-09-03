@@ -50,21 +50,41 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-<form action="/{{folder}}/{{subfolder}}/so-study-description" method="post" novalidate>
+<form action="/{{folder}}/{{subfolder}}/so-18s-outside-uk" method="post" novalidate>
 
-{{ characterCount({
-  name: "studyDescription",
-  id: "studyDescription",
-  label: {
-    text: "Describe your study",
-    size: "l",
-    isPageHeading: true
+{{ checkboxes({
+  fieldset: {
+    legend: {
+      text: "Who do you want to take part in your study?",
+      size: "l",
+      isPageHeading: true
+    }
   },
   hint: {
-    html: '<p>Give a short, clear overview of the research. Avoid jargon and explain any technical terms.</p><p>We’ll use this information for our records. It’ll not be published.</p>'
+    text: "Select all that apply"
   },
-  maxlength: 60,
-  countType: "words"
+  name: "18sOutsideUk",
+  items: [
+    {
+      value: "Participants under 18 years of age",
+      text: "Participants under 18 years of age",
+      behaviourGroup: "recruitment-exclusion"
+    },
+    {
+      value: "Participants who live outside of the UK",
+      text: "Participants who live outside of the UK",
+      behaviourGroup: "recruitment-exclusion"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "None of the above",
+      text: "None of the above",
+      behaviour: "exclusive",
+      behaviourGroup: "recruitment-exclusion"
+    }
+  ]
 }) }}
 
 <div class="nhsuk-button-group">
